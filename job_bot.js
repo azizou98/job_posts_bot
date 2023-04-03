@@ -23,14 +23,14 @@ async function run() {
              if (newHeight === previousHeight) {
                    break;
                }*/
-        await page.screenshot({path: `screenshot-${newHeight}.png`,   clip: {
+/*        await page.screenshot({path: `screenshot-${newHeight}.png`,   clip: {
                 x:0,
                 y: height,
                 width:1000,
                 height: 1900
             }});
         height=height+900;
-    }
+    }*/
 
     const element = await page.$('h2.pt-1');
     console.log(element); // should log the element object
@@ -90,12 +90,46 @@ async function run() {
 }
 
 console.log('bermejna the bot...');
+
+const nodemailer = require('nodemailer');
+
+async function sendemail(email) {
+// create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'at09109@gmail.com',
+            pass: 'aziz1998'
+        }
+    });
+
+// setup email data
+    let mailOptions = {
+        from: '"Your Name" <at09109@gmail.com>', // sender address
+        to: 'recipient@example.com', // list of receivers
+        subject: 'Hello', // Subject line
+        text: 'Hello world!', // plain text body
+        html: '<b>Hello world!</b>' // html body
+    };
+
+// send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s ', info.messageId);
+    });
+}
+
 // Schedule the bot to run every hour
-cron.schedule('* * * * *', async () => {
+// cron.schedule('* * * * *', async () => {
     console.log('Starting the bot...');
 
     // Put your bot code here
     run();
+   // sendemail('hi bro from job_bot')
     // ...
-});
+// });
 

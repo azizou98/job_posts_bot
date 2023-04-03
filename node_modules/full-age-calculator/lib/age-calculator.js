@@ -1,0 +1,56 @@
+exports.getFullAge = function(birthDate,targetDate) {
+    if(targetDate)
+    var targetDate = new Date(targetDate);
+    else targetDate = new Date();
+   return calculateFullAge(birthDate,targetDate);
+}
+
+exports.getAgeStatus = function(birthDate,targetDate) {
+    if(targetDate)
+    var targetDate = new Date(targetDate);
+    else targetDate = new Date();
+    var statusObj =  calculateFullAge(birthDate,targetDate);
+    if ((statusObj.years == 18 && statusObj.months <= 0 && statusObj.days <= 0) || statusObj.years < 18) {
+            return "Minor";
+        }
+        else {
+            return "Adult";
+        }
+}
+
+function calculateFullAge(birthDate,targetDate) {
+    var ageObj = {};
+	var birthDate = new Date(birthDate);
+	var yearTarget = targetDate.getYear();
+	var monthTarget = targetDate.getMonth();
+	var dateTarget = targetDate.getDate();
+
+	var yearDob = birthDate.getYear();
+	var monthDob = birthDate.getMonth();
+	var dateDob = birthDate.getDate();
+	var age = {};
+
+	yearAge = yearTarget - yearDob;
+	if (monthTarget >= monthDob)
+		var monthAge = monthTarget - monthDob;
+	else {
+		yearAge--;
+		var monthAge = 12 + monthTarget -monthDob;
+	}
+	if (dateTarget >= dateDob)
+		var dateAge = dateTarget - dateDob;
+	else {
+		monthAge--;
+		var dateAge = 31 + dateTarget - dateDob;
+		if (monthAge < 0) {
+		monthAge = 11;
+		yearAge--;
+		}
+    }
+    ageObj.years = yearAge;
+    ageObj.months = monthAge;
+    ageObj.days = dateAge;
+    
+    return ageObj;	
+	
+};
