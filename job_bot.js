@@ -75,10 +75,10 @@ async function run() {
         titles.push(title);
     }
 
-// join the titles array into a single string
+ // join the titles array into a single string
     const message = titles.join('\n');
 
-// send a desktop notification with the message
+ // send a desktop notification with the message
     notifier.notify({
         title: 'New Job Posts Available',
         message: message
@@ -132,4 +132,4 @@ async function sendemail(email) {
    // sendemail('hi bro from job_bot')
     // ...
 // });
-
+}
