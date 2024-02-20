@@ -34,30 +34,8 @@ async function run() {
 
     const element = await page.$('h2.mb-1');
     console.log(element); // should log the element object
-/*
-    if (element) {
-          //  await page.waitForTimeout(1000);
-            const html = await page.evaluate(el => el.innerHTML, element);
-            console.log('html:'+html);
 
-    } else{
-        console.log('element not find')
-    }
-              */
-
-    /*
-      // Filter job posts that were posted within the last 24 hours
-      const now = new Date();
-      const lastHour = 12 * 60 * 60 * 1000; // milliseconds
-      const recentJobPosts = jobPosts.filter((post) => {
-          const postedDate = new Date(post.postedDate);
-          const timeDiff = now.getTime() - postedDate.getTime();
-          return timeDiff <= lastHour;
-      });*/
-
-      // Extract the details of each post
     const jobPosts = await page.$$('h2.mb-1');
-
     for (let post of jobPosts) {
         const title = await post.evaluate(el => el.textContent);
         console.log(title);
