@@ -32,7 +32,7 @@ async function run() {
         height=height+900;
     }
 
-    const element = await page.$('h2.pt-1');
+    const element = await page.$('h2.mb-1');
     console.log(element); // should log the element object
 /*
     if (element) {
@@ -56,7 +56,7 @@ async function run() {
       });*/
 
       // Extract the details of each post
-    const jobPosts = await page.$$('h2.pt-1');
+    const jobPosts = await page.$$('h2.mb-1');
 
     for (let post of jobPosts) {
         const title = await post.evaluate(el => el.textContent);
