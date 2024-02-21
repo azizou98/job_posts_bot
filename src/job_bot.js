@@ -67,7 +67,7 @@ async function run() {
     await browser.close();
 }
 
-console.log('bermejna the bot...');
+console.log('Bot code is finished...');
 // Schedule the bot to run every hour
 cron.schedule('* * * * *', async () => {
     console.log('Starting the bot...');
